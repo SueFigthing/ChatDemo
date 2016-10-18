@@ -17,6 +17,9 @@
 		086257D41DB5F59200B4E9E2 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257D31DB5F59200B4E9E2 /* ChatTableViewController.swift */; };
 		086257D61DB5F5D500B4E9E2 /* RegaistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257D51DB5F5D500B4E9E2 /* RegaistCell.swift */; };
 		086257D91DB5F73A00B4E9E2 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257D81DB5F73A00B4E9E2 /* MessageCell.swift */; };
+		086257DB1DB6025F00B4E9E2 /* MsgTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257DA1DB6025F00B4E9E2 /* MsgTextCell.swift */; };
+		086257DF1DB603B200B4E9E2 /* MyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257DE1DB603B200B4E9E2 /* MyTableViewController.swift */; };
+		086257E11DB6041800B4E9E2 /* ChatTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257E01DB6041800B4E9E2 /* ChatTabBarController.swift */; };
 		214F2DB8D5A5524C6E10443C /* Pods_ChatDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC0A776668455CA7D9D94ED /* Pods_ChatDemoTests.framework */; };
 		2BD509188595DCAB20F6124B /* Pods_ChatDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86075CA9F6FD71A3F0DF7507 /* Pods_ChatDemo.framework */; };
 /* End PBXBuildFile section */
@@ -41,7 +44,7 @@
 /* Begin PBXFileReference section */
 		086257A21DB5F33200B4E9E2 /* ChatDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086257A51DB5F33200B4E9E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		086257A71DB5F33200B4E9E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		086257A71DB5F33200B4E9E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../ViewController.swift; sourceTree = "<group>"; };
 		086257AA1DB5F33200B4E9E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		086257AC1DB5F33200B4E9E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		086257AF1DB5F33200B4E9E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,9 +55,12 @@
 		086257C11DB5F33200B4E9E2 /* ChatDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		086257C51DB5F33200B4E9E2 /* ChatDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDemoUITests.swift; sourceTree = "<group>"; };
 		086257C71DB5F33200B4E9E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		086257D31DB5F59200B4E9E2 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
-		086257D51DB5F5D500B4E9E2 /* RegaistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegaistCell.swift; sourceTree = "<group>"; };
+		086257D31DB5F59200B4E9E2 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatTableViewController.swift; path = ../ChatTableViewController.swift; sourceTree = "<group>"; };
+		086257D51DB5F5D500B4E9E2 /* RegaistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegaistCell.swift; path = ../RegaistCell.swift; sourceTree = "<group>"; };
 		086257D81DB5F73A00B4E9E2 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		086257DA1DB6025F00B4E9E2 /* MsgTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgTextCell.swift; sourceTree = "<group>"; };
+		086257DE1DB603B200B4E9E2 /* MyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewController.swift; sourceTree = "<group>"; };
+		086257E01DB6041800B4E9E2 /* ChatTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabBarController.swift; sourceTree = "<group>"; };
 		0E15865B3DCAA1E46EF6E234 /* Pods-ChatDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatDemoTests/Pods-ChatDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		86075CA9F6FD71A3F0DF7507 /* Pods_ChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC0A776668455CA7D9D94ED /* Pods_ChatDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,15 +121,14 @@
 		086257A41DB5F33200B4E9E2 /* ChatDemo */ = {
 			isa = PBXGroup;
 			children = (
+				086257DD1DB6039900B4E9E2 /* UI */,
+				086257DC1DB6039400B4E9E2 /* chat */,
 				086257D71DB5F71E00B4E9E2 /* cell */,
 				086257A51DB5F33200B4E9E2 /* AppDelegate.swift */,
-				086257A71DB5F33200B4E9E2 /* ViewController.swift */,
 				086257A91DB5F33200B4E9E2 /* Main.storyboard */,
 				086257AC1DB5F33200B4E9E2 /* Assets.xcassets */,
 				086257AE1DB5F33200B4E9E2 /* LaunchScreen.storyboard */,
 				086257B11DB5F33200B4E9E2 /* Info.plist */,
-				086257D31DB5F59200B4E9E2 /* ChatTableViewController.swift */,
-				086257D51DB5F5D500B4E9E2 /* RegaistCell.swift */,
 			);
 			path = ChatDemo;
 			sourceTree = "<group>";
@@ -150,8 +155,28 @@
 			isa = PBXGroup;
 			children = (
 				086257D81DB5F73A00B4E9E2 /* MessageCell.swift */,
+				086257DA1DB6025F00B4E9E2 /* MsgTextCell.swift */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		086257DC1DB6039400B4E9E2 /* chat */ = {
+			isa = PBXGroup;
+			children = (
+				086257D31DB5F59200B4E9E2 /* ChatTableViewController.swift */,
+				086257D51DB5F5D500B4E9E2 /* RegaistCell.swift */,
+			);
+			path = chat;
+			sourceTree = "<group>";
+		};
+		086257DD1DB6039900B4E9E2 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				086257A71DB5F33200B4E9E2 /* ViewController.swift */,
+				086257DE1DB603B200B4E9E2 /* MyTableViewController.swift */,
+				086257E01DB6041800B4E9E2 /* ChatTabBarController.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		52431BDEDFA1FCA5C7A7D1FA /* Pods */ = {
@@ -411,9 +436,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				086257A81DB5F33200B4E9E2 /* ViewController.swift in Sources */,
+				086257DF1DB603B200B4E9E2 /* MyTableViewController.swift in Sources */,
 				086257D91DB5F73A00B4E9E2 /* MessageCell.swift in Sources */,
 				086257A61DB5F33200B4E9E2 /* AppDelegate.swift in Sources */,
 				086257D41DB5F59200B4E9E2 /* ChatTableViewController.swift in Sources */,
+				086257E11DB6041800B4E9E2 /* ChatTabBarController.swift in Sources */,
+				086257DB1DB6025F00B4E9E2 /* MsgTextCell.swift in Sources */,
 				086257D61DB5F5D500B4E9E2 /* RegaistCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,7 +537,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -553,7 +581,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -568,6 +596,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ChatDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lisue.ChatDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -581,6 +610,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ChatDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lisue.ChatDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
