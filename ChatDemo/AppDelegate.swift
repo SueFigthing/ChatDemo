@@ -17,6 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
        let tab =  ChatTabBarController.sharedTabBarController
+        UINavigationBar.appearance().barTintColor = UIColor.white
+        
+        UINavigationBar.appearance().isTranslucent = false  //TODO: ios8
+        
+        let shadow = NSShadow()
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.white,
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 20),
+            NSShadowAttributeName: shadow
+        ]
+        
+        UINavigationBar.appearance().tintColor = UIColor.black
+
+        
         self.window?.backgroundColor = UIColor.white
         self.window?.rootViewController = tab
         self.window?.makeKeyAndVisible()
