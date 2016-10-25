@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let keyboardAnimationDuration = 0.25
+let keyboardAnimationDuration = 0.23
 
 enum KeyBoardType :Int{
     
@@ -18,7 +18,7 @@ enum KeyBoardType :Int{
 }
 
 class LChatInputView: UIView {
-
+    var saveTextViewStr = String()
     var voiceSwitchBtn:UIButton!
     var  textView:UITextView!
     var moreSwitchBtn: UIButton!
@@ -113,7 +113,7 @@ class LChatInputView: UIView {
     }
     self.updateInputTextViewHeight(self.textView)
     
-   
+  
     //录音
     
     self.recordVoiceBtn = UIButton()
@@ -134,6 +134,8 @@ class LChatInputView: UIView {
         make.bottom.equalTo(inputWrapView).offset(-5)
         make.height.equalTo(35).priority(250)
     }
+    
+
     
     
     }
@@ -188,6 +190,10 @@ extension LChatInputView{
         if keyBoardType != .VoiceRecoder{
             self.recordVoiceBtn.isHidden = true
             self.textView.isHidden = false
+            if self.saveTextViewStr.characters.count>0 {
+                self.textView.text = self.saveTextViewStr
+                self.saveTextViewStr = ""
+            }
             self.updateInputTextViewHeight(self.textView)
             self.textView.becomeFirstResponder()
             
@@ -195,16 +201,33 @@ extension LChatInputView{
             self.recordVoiceBtn.isHidden = false
             self.textView.isHidden = true
             self.textView.resignFirstResponder()
-//            self.superview!.layoutIfNeeded()
-//            self.inputWrapView.snp.updateConstraints { (make) in
-//                make.height.equalTo(35)
-//            }
+            if self.textView.text.characters.count>0  {
+                self.saveTextViewStr = self.textView.text
+                self.textView.text = "";
+                self.updateInputTextViewHeight(self.textView)
+            }
+           
         }
         
         self.voiceSwitchBtn.isSelected = !self.voiceSwitchBtn.isSelected;
     }
     
     func moreSwitchAction() -> Void {
+        
+        
+        if keyBoardType == .VoiceRecoder {
+            if self.saveTextViewStr.characters.count>0 {
+                self.textView.text = self.saveTextViewStr
+                self.saveTextViewStr = ""
+                let textContentH = self.textView.contentSize.height
+                if textContentH>35{
+                    let textHeight = textContentH<100 ? textContentH:100
+                    self.textView.snp.updateConstraints({ (make) -> Void in
+                        make.height.equalTo(textHeight)
+                    })
+                }
+            }
+        }
         
         if keyBoardType != .More{
             keyBoardType = .More
@@ -216,23 +239,24 @@ extension LChatInputView{
        
         self.recordVoiceBtn.isHidden = true
         self.textView.isHidden = false
+      
         if keyBoardType == .More {
-            
+            self.textView.resignFirstResponder()
             CATransaction.begin()
             hideKeyBoardAnimation()
             self.superview!.layoutIfNeeded()
+            
             self.moreView.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(150)
             }
+            
             UIView.animate(withDuration: keyboardAnimationDuration, animations: { () -> Void in
-                
+
                 self.superview!.layoutIfNeeded()
             }) 
             CATransaction.commit()
         }else{
-            self.moreView.snp.updateConstraints { (make) -> Void in
-                make.height.equalTo(0)
-            }
+
             self.updateInputTextViewHeight(self.textView)
             self.textView.becomeFirstResponder()
         }
