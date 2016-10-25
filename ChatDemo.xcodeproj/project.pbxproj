@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		081F5A9E1DBF4783006E96D4 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F5A9D1DBF4783006E96D4 /* MoreView.swift */; };
 		085B3C821DB85A9D002D428A /* LChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B3C811DB85A9D002D428A /* LChatInputView.swift */; };
 		086257A61DB5F33200B4E9E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257A51DB5F33200B4E9E2 /* AppDelegate.swift */; };
 		086257A81DB5F33200B4E9E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257A71DB5F33200B4E9E2 /* ViewController.swift */; };
@@ -21,7 +22,6 @@
 		086257DB1DB6025F00B4E9E2 /* MsgTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257DA1DB6025F00B4E9E2 /* MsgTextCell.swift */; };
 		086257DF1DB603B200B4E9E2 /* MyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257DE1DB603B200B4E9E2 /* MyTableViewController.swift */; };
 		086257E11DB6041800B4E9E2 /* ChatTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257E01DB6041800B4E9E2 /* ChatTabBarController.swift */; };
-		08EC3A0B1DB752F200EAFDE0 /* SEKeyBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC3A0A1DB752F200EAFDE0 /* SEKeyBoard.swift */; };
 		214F2DB8D5A5524C6E10443C /* Pods_ChatDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC0A776668455CA7D9D94ED /* Pods_ChatDemoTests.framework */; };
 		2BD509188595DCAB20F6124B /* Pods_ChatDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86075CA9F6FD71A3F0DF7507 /* Pods_ChatDemo.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		081F5A9D1DBF4783006E96D4 /* MoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		085B3C811DB85A9D002D428A /* LChatInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LChatInputView.swift; sourceTree = "<group>"; };
 		086257A21DB5F33200B4E9E2 /* ChatDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086257A51DB5F33200B4E9E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +65,6 @@
 		086257DA1DB6025F00B4E9E2 /* MsgTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgTextCell.swift; sourceTree = "<group>"; };
 		086257DE1DB603B200B4E9E2 /* MyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewController.swift; sourceTree = "<group>"; };
 		086257E01DB6041800B4E9E2 /* ChatTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabBarController.swift; sourceTree = "<group>"; };
-		08EC3A0A1DB752F200EAFDE0 /* SEKeyBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SEKeyBoard.swift; sourceTree = "<group>"; };
 		0E15865B3DCAA1E46EF6E234 /* Pods-ChatDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatDemoTests/Pods-ChatDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		86075CA9F6FD71A3F0DF7507 /* Pods_ChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC0A776668455CA7D9D94ED /* Pods_ChatDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,8 +187,8 @@
 		08EC3A071DB74CE000EAFDE0 /* keyBoard */ = {
 			isa = PBXGroup;
 			children = (
-				08EC3A0A1DB752F200EAFDE0 /* SEKeyBoard.swift */,
 				085B3C811DB85A9D002D428A /* LChatInputView.swift */,
+				081F5A9D1DBF4783006E96D4 /* MoreView.swift */,
 			);
 			path = keyBoard;
 			sourceTree = "<group>";
@@ -455,10 +455,10 @@
 				086257A61DB5F33200B4E9E2 /* AppDelegate.swift in Sources */,
 				085B3C821DB85A9D002D428A /* LChatInputView.swift in Sources */,
 				086257D41DB5F59200B4E9E2 /* ChatTableViewController.swift in Sources */,
-				08EC3A0B1DB752F200EAFDE0 /* SEKeyBoard.swift in Sources */,
 				086257E11DB6041800B4E9E2 /* ChatTabBarController.swift in Sources */,
 				086257DB1DB6025F00B4E9E2 /* MsgTextCell.swift in Sources */,
 				086257D61DB5F5D500B4E9E2 /* RegaistCell.swift in Sources */,
+				081F5A9E1DBF4783006E96D4 /* MoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

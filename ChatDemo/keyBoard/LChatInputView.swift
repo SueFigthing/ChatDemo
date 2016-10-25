@@ -23,7 +23,7 @@ class LChatInputView: UIView {
     var  textView:UITextView!
     var moreSwitchBtn: UIButton!
     var inputWrapView : UIView!
-    var moreView:UIView!
+    var moreView:MoreView!
     var recordVoiceBtn :UIButton!
     var keyBoardType :KeyBoardType!
     
@@ -43,12 +43,12 @@ class LChatInputView: UIView {
    fileprivate func setupViews() -> Void {
     
     // 更多功能展示
-    self.moreView = UIView()
+    self.moreView = MoreView()
     self.addSubview(self.moreView!)
     self.moreView.backgroundColor = UIColor.yellow
   
     self.inputWrapView = UIView()
-    self.inputWrapView.backgroundColor = UIColor.yellow
+    self.inputWrapView.backgroundColor = UIColor.purple
     self.addSubview(inputWrapView)
     
     
@@ -267,6 +267,11 @@ extension LChatInputView{
 
 //MARK: -
 extension LChatInputView:UITextViewDelegate{
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.keyBoardType = .System
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
         self.updateInputTextViewHeight(textView)
     }
