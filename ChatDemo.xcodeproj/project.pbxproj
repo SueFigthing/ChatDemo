@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		081F5A9E1DBF4783006E96D4 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F5A9D1DBF4783006E96D4 /* MoreView.swift */; };
+		085B14321DC0AE4B00F7B77D /* MoreBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B14311DC0AE4B00F7B77D /* MoreBtn.swift */; };
 		085B3C821DB85A9D002D428A /* LChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B3C811DB85A9D002D428A /* LChatInputView.swift */; };
 		086257A61DB5F33200B4E9E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257A51DB5F33200B4E9E2 /* AppDelegate.swift */; };
 		086257A81DB5F33200B4E9E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257A71DB5F33200B4E9E2 /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		081F5A9D1DBF4783006E96D4 /* MoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
+		085B14311DC0AE4B00F7B77D /* MoreBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreBtn.swift; sourceTree = "<group>"; };
 		085B3C811DB85A9D002D428A /* LChatInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LChatInputView.swift; sourceTree = "<group>"; };
 		086257A21DB5F33200B4E9E2 /* ChatDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086257A51DB5F33200B4E9E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			children = (
 				085B3C811DB85A9D002D428A /* LChatInputView.swift */,
 				081F5A9D1DBF4783006E96D4 /* MoreView.swift */,
+				085B14311DC0AE4B00F7B77D /* MoreBtn.swift */,
 			);
 			path = keyBoard;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				086257D41DB5F59200B4E9E2 /* ChatTableViewController.swift in Sources */,
 				086257E11DB6041800B4E9E2 /* ChatTabBarController.swift in Sources */,
 				086257DB1DB6025F00B4E9E2 /* MsgTextCell.swift in Sources */,
+				085B14321DC0AE4B00F7B77D /* MoreBtn.swift in Sources */,
 				086257D61DB5F5D500B4E9E2 /* RegaistCell.swift in Sources */,
 				081F5A9E1DBF4783006E96D4 /* MoreView.swift in Sources */,
 			);

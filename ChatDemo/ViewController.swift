@@ -30,7 +30,6 @@ class ViewController: UIViewController {
    
         btn.addTarget(self, action: #selector(action), for: .touchUpInside)
         
-      
 //        
 //        let keyboard = SEKeyBoard(frame:CGRect.zero)
 //        self.view.addSubview(keyboard)

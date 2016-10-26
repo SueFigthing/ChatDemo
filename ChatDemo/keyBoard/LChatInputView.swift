@@ -7,8 +7,10 @@
 //
 
 import UIKit
-let keyboardAnimationDuration = 0.23
 
+let keyboardAnimationDuration = 0.2
+
+let moreViewHeight = 20+(moreViewBtnHeight + 15)*2
 enum KeyBoardType :Int{
     
     case Nomal = 10
@@ -18,6 +20,7 @@ enum KeyBoardType :Int{
 }
 
 class LChatInputView: UIView {
+    
     var saveTextViewStr = String()
     var voiceSwitchBtn:UIButton!
     var  textView:UITextView!
@@ -27,12 +30,14 @@ class LChatInputView: UIView {
     var recordVoiceBtn :UIButton!
     var keyBoardType :KeyBoardType!
     
+    ///重写init方法
   override  init(frame: CGRect) {
-        super.init(frame: frame)
-    self.backgroundColor = UIColor.white
-      keyBoardType = KeyBoardType.Nomal
+    super.init(frame: frame)
     
-        self.setupViews()
+    self.backgroundColor = UIColor.white
+    keyBoardType = KeyBoardType.Nomal
+    
+    self.setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,14 +46,19 @@ class LChatInputView: UIView {
     
     
    fileprivate func setupViews() -> Void {
-    
     // 更多功能展示
-    self.moreView = MoreView()
+    self.moreView = MoreView(frame:CGRect.zero)
     self.addSubview(self.moreView!)
     self.moreView.backgroundColor = UIColor.yellow
-  
+    
+    self.moreView.setItemsArr(itemsArr: [MoreViewType.Photo,MoreViewType.Camera]
+)
+    
+    
+    
+    //inputBar的背景
     self.inputWrapView = UIView()
-    self.inputWrapView.backgroundColor = UIColor.purple
+    self.inputWrapView.backgroundColor = UIColor.clear
     self.addSubview(inputWrapView)
     
     
@@ -65,12 +75,14 @@ class LChatInputView: UIView {
         make.bottom.equalTo(inputWrapView.snp.top)
         make.height.equalTo(35)
     }
-    //切换语音按钮
     
+    
+    //切换语音按钮
     self.voiceSwitchBtn = UIButton()
     self.voiceSwitchBtn.backgroundColor = UIColor.red
     self.addSubview(self.voiceSwitchBtn)
     self.voiceSwitchBtn.addTarget(self, action: #selector(LChatInputView.voiceSwitchAction), for:.touchUpInside)
+    
     voiceSwitchBtn.snp.makeConstraints { (make) in
         make.left.equalTo(inputWrapView).offset(4)
         make.bottom.equalTo(inputWrapView).offset(-4)
@@ -78,18 +90,18 @@ class LChatInputView: UIView {
     }
     
     // 切换更多的按钮
-    
     self.moreSwitchBtn = UIButton()
     self.moreSwitchBtn.backgroundColor = UIColor.orange
     self.moreSwitchBtn.addTarget(self, action: #selector(LChatInputView.moreSwitchAction), for: .touchUpInside)
     self.addSubview(self.moreSwitchBtn)
+    
     moreSwitchBtn.snp.makeConstraints { (make) in
         make.right.equalTo(inputWrapView).offset(-4)
         make.bottom.equalTo(inputWrapView).offset(-4)
         make.size.equalTo(CGSize(width: 27, height: 27))
     }
     
-    
+    //输入框
     self.textView = UITextView()
     self.textView.layer.borderColor = UIColor.lightGray.cgColor
     self.textView.layer.borderWidth = 0.5
@@ -101,12 +113,10 @@ class LChatInputView: UIView {
     self.addSubview(self.textView)
     
     textView.snp.makeConstraints { (make) in
-        
         make.right.equalTo(self.moreSwitchBtn.snp.left).offset(-5)
         make.left.equalTo(self.voiceSwitchBtn.snp.right).offset(5)
         make.top.equalTo(self.inputWrapView).offset(5)
         make.bottom.equalTo(self.inputWrapView).offset(-5)
-        
         make.height.greaterThanOrEqualTo(30)
         make.height.lessThanOrEqualTo(100)
         make.height.equalTo(35)
@@ -115,10 +125,8 @@ class LChatInputView: UIView {
     
   
     //录音
-    
     self.recordVoiceBtn = UIButton()
     self.addSubview(self.recordVoiceBtn)
-    self.recordVoiceBtn.backgroundColor = UIColor.red
     self.recordVoiceBtn.isHidden = true
     self.recordVoiceBtn.setTitle("按住 说话", for: UIControlState())
     self.recordVoiceBtn.setTitle("松开 结束", for: .highlighted)
@@ -127,6 +135,7 @@ class LChatInputView: UIView {
     self.recordVoiceBtn.addTarget(self, action: #selector(LChatInputView.holdDownButtonTouchUpOutside), for: .touchUpOutside)
     self.recordVoiceBtn.addTarget(self, action: #selector(LChatInputView.holdDownDragOutside), for: .touchDragExit)
     self.recordVoiceBtn.addTarget(self, action: #selector(LChatInputView.holdDownDragInside), for: .touchDragEnter)
+    self.recordVoiceBtn.backgroundColor = UIColor.brown
     self.recordVoiceBtn.snp.makeConstraints { (make) -> Void in
         make.right.equalTo(self.moreSwitchBtn.snp.left).offset(-5)
         make.left.equalTo(self.voiceSwitchBtn.snp.right).offset(5)
@@ -135,11 +144,9 @@ class LChatInputView: UIView {
         make.height.equalTo(35).priority(250)
     }
     
-
-    
-    
     }
  
+    /// 输入框失去焦点
     func hideKeyBoardAnimation() {
         DispatchQueue.main.async {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -168,15 +175,19 @@ extension LChatInputView{
     func holdDownDragInside() {
     }
     
-//    ---------------------
+}
+
+
+//MARK: - 切换更多或者语音按钮
+extension LChatInputView{
     
-    func voiceSwitchAction() -> Void {
+    ///点击语音 切换键盘与语音功能
+      func voiceSwitchAction() -> Void {
         if keyBoardType == .More {
             self.moreView.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(0)
             }
         }
-       
         
         if keyBoardType != .VoiceRecoder{
             keyBoardType = .VoiceRecoder
@@ -184,8 +195,6 @@ extension LChatInputView{
         else{
             keyBoardType = .System
         }
-        
-       
         
         if keyBoardType != .VoiceRecoder{
             self.recordVoiceBtn.isHidden = true
@@ -206,15 +215,15 @@ extension LChatInputView{
                 self.textView.text = "";
                 self.updateInputTextViewHeight(self.textView)
             }
-           
+            
         }
         
         self.voiceSwitchBtn.isSelected = !self.voiceSwitchBtn.isSelected;
     }
     
+    ///点击更多 切换键盘与更多功能
     func moreSwitchAction() -> Void {
-        
-        
+    
         if keyBoardType == .VoiceRecoder {
             if self.saveTextViewStr.characters.count>0 {
                 self.textView.text = self.saveTextViewStr
@@ -236,36 +245,38 @@ extension LChatInputView{
             keyBoardType = .System
         }
         
-       
+        
         self.recordVoiceBtn.isHidden = true
         self.textView.isHidden = false
-      
+        
         if keyBoardType == .More {
-            self.textView.resignFirstResponder()
+//            self.textView.resignFirstResponder()
             CATransaction.begin()
             hideKeyBoardAnimation()
             self.superview!.layoutIfNeeded()
             
             self.moreView.snp.updateConstraints { (make) -> Void in
-                make.height.equalTo(150)
+                make.height.equalTo(moreViewHeight)
             }
             
             UIView.animate(withDuration: keyboardAnimationDuration, animations: { () -> Void in
-
+                
                 self.superview!.layoutIfNeeded()
-            }) 
+            })
             CATransaction.commit()
         }else{
-
+            
             self.updateInputTextViewHeight(self.textView)
             self.textView.becomeFirstResponder()
         }
         
-         self.moreSwitchBtn.isSelected = !self.moreSwitchBtn.isSelected
+        self.moreSwitchBtn.isSelected = !self.moreSwitchBtn.isSelected
     }
+   
 }
 
-//MARK: -
+
+//MARK: - UITextViewDelegate
 extension LChatInputView:UITextViewDelegate{
     
     func textViewDidBeginEditing(_ textView: UITextView) {
