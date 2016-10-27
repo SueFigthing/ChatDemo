@@ -20,7 +20,9 @@ class ChatTableViewController: UIViewController {
         super.viewDidLoad()
 
         self.setupViews()
-   
+        let gesture = UITapGestureRecognizer(target: self, action:#selector(ChatTableViewController.handleTap(_:)))
+        gesture.delegate = self
+        self.tableView.addGestureRecognizer(gesture)
         
     }
     
@@ -64,11 +66,20 @@ class ChatTableViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+
+}
+
+extension ChatTableViewController:UIGestureRecognizerDelegate {
     
-
-
-
-
+    func handleTap(_ recognizer: UITapGestureRecognizer) {
+        UIView.animate(withDuration: keyboardAnimationDuration, animations: { () -> Void in
+            self.view.layoutIfNeeded()
+           
+            self.messageInputView.resignResponder()
+            
+            self.view.layoutIfNeeded()
+        }) 
+    }
 }
 
 // MARK: - 键盘改变
@@ -79,15 +90,18 @@ extension ChatTableViewController {
         let keyboardValue = dic.object(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
         let bottomDistance = UIScreen.main.bounds.size.height - keyboardValue.cgRectValue.origin.y
         let duration = Double(dic.object(forKey: UIKeyboardAnimationDurationUserInfoKey) as! NSNumber)
-        
-        UIView.animate(withDuration: duration, animations: {
-            self.messageInputView.moreView?.snp.updateConstraints({ (make) -> Void in
-                make.height.equalTo(bottomDistance)
+        print("---\(self.messageInputView.keyBoardType)")
+        if self.messageInputView.keyBoardType == .System ||  self.messageInputView.keyBoardType == .Nomal || bottomDistance>0{
+            UIView.animate(withDuration: duration, animations: {
+                self.messageInputView.moreView?.snp.updateConstraints({ (make) -> Void in
+                    make.height.equalTo(bottomDistance)
+                })
+                self.view.layoutIfNeeded()
+                }, completion: {
+                    (value: Bool) in
             })
-            self.view.layoutIfNeeded()
-            }, completion: {
-                (value: Bool) in
-        })
+        }
+    
         
     }
 }
@@ -119,5 +133,9 @@ extension  ChatTableViewController :UITableViewDelegate,UITableViewDataSource{
 
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
     }
 }

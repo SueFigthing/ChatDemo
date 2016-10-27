@@ -8,9 +8,11 @@
 
 import UIKit
 
-let keyboardAnimationDuration = 0.2
+
 
 let moreViewHeight = 20+(moreViewBtnHeight + 15)*2
+let keyboardAnimationDuration = 0.25
+
 enum KeyBoardType :Int{
     
     case Nomal = 10
@@ -183,30 +185,13 @@ extension LChatInputView{
     
     ///点击语音 切换键盘与语音功能
       func voiceSwitchAction() -> Void {
-        if keyBoardType == .More {
-            self.moreView.snp.updateConstraints { (make) -> Void in
-                make.height.equalTo(0)
-            }
-        }
         
         if keyBoardType != .VoiceRecoder{
             keyBoardType = .VoiceRecoder
-        }
-        else{
-            keyBoardType = .System
-        }
-        
-        if keyBoardType != .VoiceRecoder{
-            self.recordVoiceBtn.isHidden = true
-            self.textView.isHidden = false
-            if self.saveTextViewStr.characters.count>0 {
-                self.textView.text = self.saveTextViewStr
-                self.saveTextViewStr = ""
+            self.moreView.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(0)
             }
-            self.updateInputTextViewHeight(self.textView)
-            self.textView.becomeFirstResponder()
             
-        }else{
             self.recordVoiceBtn.isHidden = false
             self.textView.isHidden = true
             self.textView.resignFirstResponder()
@@ -215,7 +200,19 @@ extension LChatInputView{
                 self.textView.text = "";
                 self.updateInputTextViewHeight(self.textView)
             }
-            
+
+        }
+        else{
+            keyBoardType = .System
+            self.recordVoiceBtn.isHidden = true
+            self.textView.isHidden = false
+            if self.saveTextViewStr.characters.count>0 {
+                self.textView.text = self.saveTextViewStr
+                self.saveTextViewStr = ""
+            }
+            self.updateInputTextViewHeight(self.textView)
+            self.textView.becomeFirstResponder()
+
         }
         
         self.voiceSwitchBtn.isSelected = !self.voiceSwitchBtn.isSelected;
@@ -250,7 +247,6 @@ extension LChatInputView{
         self.textView.isHidden = false
         
         if keyBoardType == .More {
-//            self.textView.resignFirstResponder()
             CATransaction.begin()
             hideKeyBoardAnimation()
             self.superview!.layoutIfNeeded()
@@ -260,7 +256,7 @@ extension LChatInputView{
             }
             
             UIView.animate(withDuration: keyboardAnimationDuration, animations: { () -> Void in
-                
+            
                 self.superview!.layoutIfNeeded()
             })
             CATransaction.commit()
@@ -274,6 +270,7 @@ extension LChatInputView{
     }
    
 }
+
 
 
 //MARK: - UITextViewDelegate
@@ -306,4 +303,18 @@ extension LChatInputView:UITextViewDelegate{
     }
 
     
+    func resignResponder() -> Void {
+        
+        if self.keyBoardType == .More {
+            self.keyBoardType = .Nomal
+            self.moreView.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(0)
+            }
+        }
+        else if self.keyBoardType != .VoiceRecoder{
+            self.keyBoardType = .Nomal
+           hideKeyBoardAnimation()
+        }
+       
+    }
 }
