@@ -12,6 +12,7 @@ import UIKit
 
 let moreViewHeight = 20+(moreViewBtnHeight + 15)*2
 let keyboardAnimationDuration = 0.25
+private let textViewHeight = 100
 
 enum KeyBoardType :Int{
     
@@ -23,13 +24,13 @@ enum KeyBoardType :Int{
 
 class LChatInputView: UIView {
     
-    var saveTextViewStr = String()
-    var voiceSwitchBtn:UIButton!
-    var  textView:UITextView!
-    var moreSwitchBtn: UIButton!
-    var inputWrapView : UIView!
+   fileprivate var saveTextViewStr = String()
+   fileprivate var voiceSwitchBtn:UIButton!
+   fileprivate var textView:UITextView!
+   fileprivate var moreSwitchBtn: UIButton!
+   fileprivate var inputWrapView : UIView!
     var moreView:MoreView!
-    var recordVoiceBtn :UIButton!
+   fileprivate var recordVoiceBtn :UIButton!
     var keyBoardType :KeyBoardType!
     
     ///重写init方法
@@ -120,7 +121,7 @@ class LChatInputView: UIView {
         make.top.equalTo(self.inputWrapView).offset(5)
         make.bottom.equalTo(self.inputWrapView).offset(-5)
         make.height.greaterThanOrEqualTo(30)
-        make.height.lessThanOrEqualTo(100)
+        make.height.lessThanOrEqualTo(textViewHeight)
         make.height.equalTo(35)
     }
     self.updateInputTextViewHeight(self.textView)
@@ -184,7 +185,7 @@ extension LChatInputView{
 extension LChatInputView{
     
     ///点击语音 切换键盘与语音功能
-      func voiceSwitchAction() -> Void {
+    @objc fileprivate  func voiceSwitchAction() -> Void {
         
         if keyBoardType != .VoiceRecoder{
             keyBoardType = .VoiceRecoder
@@ -219,15 +220,16 @@ extension LChatInputView{
     }
     
     ///点击更多 切换键盘与更多功能
-    func moreSwitchAction() -> Void {
+  @objc fileprivate  func moreSwitchAction() -> Void {
     
         if keyBoardType == .VoiceRecoder {
+            //这里处理有文本切切换发语音 要用saveTextViewStr保存当前的内容
             if self.saveTextViewStr.characters.count>0 {
                 self.textView.text = self.saveTextViewStr
                 self.saveTextViewStr = ""
                 let textContentH = self.textView.contentSize.height
                 if textContentH>35{
-                    let textHeight = textContentH<100 ? textContentH:100
+                    let textHeight = textContentH<CGFloat(textViewHeight)  ? textContentH:CGFloat(textViewHeight)
                     self.textView.snp.updateConstraints({ (make) -> Void in
                         make.height.equalTo(textHeight)
                     })
@@ -241,7 +243,6 @@ extension LChatInputView{
         else{
             keyBoardType = .System
         }
-        
         
         self.recordVoiceBtn.isHidden = true
         self.textView.isHidden = false
@@ -286,7 +287,7 @@ extension LChatInputView:UITextViewDelegate{
     
     func updateInputTextViewHeight(_ textView: UITextView) {
         let textContentH = textView.contentSize.height
-        let textHeight = textContentH > 35 ? (textContentH<100 ? textContentH:100):31
+        let textHeight = textContentH > 35 ? (textContentH<CGFloat(textViewHeight) ? textContentH:CGFloat(textViewHeight)):31
         
         UIView.animate(withDuration: 0.2) { () -> Void in
             self.textView.snp.updateConstraints({ (make) -> Void in
@@ -295,7 +296,7 @@ extension LChatInputView:UITextViewDelegate{
                 make.top.equalTo(self.inputWrapView).offset(5)
                 make.bottom.equalTo(self.inputWrapView).offset(-5)
                 make.height.greaterThanOrEqualTo(30)
-                make.height.lessThanOrEqualTo(100)
+                make.height.lessThanOrEqualTo(textViewHeight)
                 make.height.equalTo(textHeight)
             })
         }
@@ -303,6 +304,7 @@ extension LChatInputView:UITextViewDelegate{
     }
 
     
+    //失去焦点
     func resignResponder() -> Void {
         
         if self.keyBoardType == .More {

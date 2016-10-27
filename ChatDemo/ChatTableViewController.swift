@@ -33,9 +33,11 @@ class ChatTableViewController: UIViewController {
     }
     
     
-    func setupViews() -> Void {
+   fileprivate func setupViews() -> Void {
+        
         self.messageInputView = LChatInputView(frame: CGRect.zero)
         self.view.addSubview(messageInputView)
+        
         self.messageInputView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.view)
         }
@@ -56,8 +58,6 @@ class ChatTableViewController: UIViewController {
             make.bottom.equalTo(self.messageInputView.snp.top)
         }
         
-      
-        
     }
     
 
@@ -69,6 +69,7 @@ class ChatTableViewController: UIViewController {
 
 }
 
+// MARK: - UIGestureRecognizerDelegate
 extension ChatTableViewController:UIGestureRecognizerDelegate {
     
     func handleTap(_ recognizer: UITapGestureRecognizer) {

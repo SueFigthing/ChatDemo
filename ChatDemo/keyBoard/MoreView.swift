@@ -6,6 +6,12 @@
 //  Copyright © 2016年 lisue. All rights reserved.
 //
 
+/*
+ * [更多菜单栏的布局]
+ */
+
+// 对于这个界面 不采用约束  因为采用约束 太过繁琐
+
 import UIKit
 
 //选择卡选项
@@ -15,23 +21,23 @@ enum MoreViewType: Int {
     case Camera     //拍照
 }
 
-let kMoreViewIconN = "kMoreViewIconN"
-let kMoreViewIconH = "kMoreViewIconH"
-let kMoreViewIconDisabled = "kMoreViewIconDisabled"
-let kMoreViewIconTitle = "kMoreViewIconTitle"
-let kMoreViewIconTag  = "kMoreViewIconTag"
+fileprivate let kMoreViewIconN = "kMoreViewIconN"
+fileprivate let kMoreViewIconH = "kMoreViewIconH"
+fileprivate let kMoreViewIconDisabled = "kMoreViewIconDisabled"
+fileprivate let kMoreViewIconTitle = "kMoreViewIconTitle"
+fileprivate let kMoreViewIconTag  = "kMoreViewIconTag"
 
-let itemPadding = 10   //间距
-let maxRowNum = 2      //最大行数
-let maxColumNum = 4    //最大列数
+fileprivate let itemPadding = 10   //间距
+fileprivate let maxRowNum = 2      //最大行数
+fileprivate let maxColumNum = 4    //最大列数
 let moreViewBtnHeight = 72 //菜单按钮的宽高
 
 let wid = UIApplication.shared.keyWindow?.bounds.size.width;
-// 对于这个界面 不采用约束  因为采用约束 太过繁琐
+
 class MoreView: UIView {
-    var scrollview :UIScrollView!
-    var pagControl :UIPageControl!
-    var itemAy :NSMutableArray!
+   fileprivate var scrollview :UIScrollView!
+   fileprivate var pagControl :UIPageControl!
+   fileprivate var itemAy :NSMutableArray!
  
     
     override init(frame:CGRect) {
@@ -93,7 +99,7 @@ class MoreView: UIView {
     
     }
    
-  
+  ///按钮之间的布局
     fileprivate func getFrameWithColumesOfPerRow(columesOfPerRow:NSInteger,
                                      rowsOfPerColumn:NSInteger,
                                      itemWidth:CGFloat,
@@ -120,6 +126,7 @@ class MoreView: UIView {
         
         self.itemAy = NSMutableArray(capacity: 0)
         
+        //加入菜单按钮选项
         for (_,item) in itemsArr.enumerated(){
             
             switch item as! MoreViewType {
@@ -142,6 +149,7 @@ class MoreView: UIView {
             
         }
         
+        //布局UI
         self.setupUI()
         
     }
