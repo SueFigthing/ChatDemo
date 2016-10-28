@@ -27,7 +27,7 @@ fileprivate let kMoreViewIconDisabled = "kMoreViewIconDisabled"
 fileprivate let kMoreViewIconTitle = "kMoreViewIconTitle"
 fileprivate let kMoreViewIconTag  = "kMoreViewIconTag"
 
-fileprivate let itemPadding = 10   //间距
+fileprivate let itemPadding = 15   //间距
 fileprivate let maxRowNum = 2      //最大行数
 fileprivate let maxColumNum = 4    //最大列数
 let moreViewBtnHeight = 72 //菜单按钮的宽高
@@ -59,27 +59,27 @@ class MoreView: UIView {
         scrollview.delegate = self
         scrollview.isPagingEnabled = true
         scrollview.showsHorizontalScrollIndicator = false
+        scrollview.isScrollEnabled = true
         self.addSubview(scrollview)
         
-        pagControl = UIPageControl(frame: CGRect(x: Int(wid!/2), y: moreViewHeight-15, width: 10, height: 10))
+        pagControl = UIPageControl(frame: CGRect(x: 0, y: moreViewHeight-15, width: 10, height: 10))
         pagControl.numberOfPages = Int(self.scrollview.contentSize.width)/Int(wid!);
         pagControl.pageIndicatorTintColor = UIColor.lightGray.withAlphaComponent(0.6)
-        pagControl.currentPageIndicatorTintColor = UIColor.gray
+        pagControl.currentPageIndicatorTintColor = UIColor.blue
         pagControl.hidesForSinglePage = true
         self.addSubview(pagControl)
     }
     
    fileprivate func setupUI() {
-        
-        let w = wid! - CGFloat(itemPadding*(maxColumNum+1))
-        let width = w/CGFloat(maxColumNum)
-        
+    
+        let magin = (wid!-CGFloat(moreViewBtnHeight*maxColumNum))/CGFloat(maxColumNum+1)
+ 
         for (i,item) in self.itemAy.enumerated(){
             let itemDic = item as! NSDictionary
              let btn = MoreBtn()
             let page = i/(maxRowNum*maxColumNum)
-            btn.frame = self.getFrameWithColumesOfPerRow(columesOfPerRow: maxColumNum, rowsOfPerColumn: maxRowNum, itemWidth: width, itemHeight: CGFloat(moreViewBtnHeight), margin:CGFloat(itemPadding) , atIndex: i , page: page, scrollView: self.scrollview)
-           
+
+            btn.frame = self.getFrameWithColumesOfPerRow(columesOfPerRow: maxColumNum, rowsOfPerColumn: maxRowNum, itemSize: CGSize.init(width: moreViewBtnHeight, height: moreViewBtnHeight), margin: magin, atIndex: i, page: page, scrollView: self.scrollview)
             
             let btnTag = (itemDic[kMoreViewIconTag] as! NSNumber).intValue
             let imageNameN = itemDic[kMoreViewIconN]
@@ -93,30 +93,34 @@ class MoreView: UIView {
         }
         
     let countPerPage = (maxColumNum * maxRowNum);
-    let pagesCount = ceil(Double(self.itemAy.count/countPerPage))
-    self.scrollview.contentSize = CGSize(width: wid!, height: 0)
+    let pagesCount = ceil(Double(self.itemAy.count/countPerPage))+1
+    self.scrollview.contentSize = CGSize(width: Int(wid!)*(self.itemAy.count/(countPerPage)+1), height: 0)
     self.pagControl.numberOfPages = Int(pagesCount);
+    if pagesCount>1 {
+       self.pagControl.isHidden = false
+    }else{
+      self.pagControl.isHidden = true
+    }
     
     }
    
   ///按钮之间的布局
     fileprivate func getFrameWithColumesOfPerRow(columesOfPerRow:NSInteger,
                                      rowsOfPerColumn:NSInteger,
-                                     itemWidth:CGFloat,
-                                     itemHeight:CGFloat,
+                                     itemSize:CGSize,
                                      margin:CGFloat,
                                      atIndex:NSInteger,
                                      page:NSInteger,
                                      scrollView:UIScrollView) -> CGRect {
         
-        let xWid = CGFloat(atIndex % columesOfPerRow) * (itemWidth + margin)
-        let x =   xWid + margin + (CGFloat(page) * wid!)
+        let xWid = CGFloat(atIndex % columesOfPerRow) * (itemSize.width + margin)
+        let x =   xWid + (CGFloat(page) * wid!) + margin
         
         let yHeight = (atIndex / columesOfPerRow) - rowsOfPerColumn * page
         
-        let y = CGFloat(yHeight) * (itemHeight + margin) + margin
+        let y = CGFloat(yHeight) * (itemSize.height + CGFloat(itemPadding) ) + CGFloat(itemPadding)
         
-        let itemFrame = CGRect(x:x, y: y, width: itemWidth, height: itemHeight)
+        let itemFrame = CGRect(x:x, y: y, width: itemSize.width, height: itemSize.height)
         
         return itemFrame
         

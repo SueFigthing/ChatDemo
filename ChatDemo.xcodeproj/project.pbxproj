@@ -23,6 +23,8 @@
 		086257DB1DB6025F00B4E9E2 /* MsgTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257DA1DB6025F00B4E9E2 /* MsgTextCell.swift */; };
 		086257DF1DB603B200B4E9E2 /* MyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257DE1DB603B200B4E9E2 /* MyTableViewController.swift */; };
 		086257E11DB6041800B4E9E2 /* ChatTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086257E01DB6041800B4E9E2 /* ChatTabBarController.swift */; };
+		08ED71F01DC3360100A84397 /* UIImageViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08ED71EF1DC3360100A84397 /* UIImageViewAdditions.swift */; };
+		08ED71F21DC33CAB00A84397 /* LRecordVoiceBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08ED71F11DC33CAB00A84397 /* LRecordVoiceBtn.swift */; };
 		214F2DB8D5A5524C6E10443C /* Pods_ChatDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC0A776668455CA7D9D94ED /* Pods_ChatDemoTests.framework */; };
 		2BD509188595DCAB20F6124B /* Pods_ChatDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86075CA9F6FD71A3F0DF7507 /* Pods_ChatDemo.framework */; };
 /* End PBXBuildFile section */
@@ -67,6 +69,8 @@
 		086257DA1DB6025F00B4E9E2 /* MsgTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgTextCell.swift; sourceTree = "<group>"; };
 		086257DE1DB603B200B4E9E2 /* MyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewController.swift; sourceTree = "<group>"; };
 		086257E01DB6041800B4E9E2 /* ChatTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabBarController.swift; sourceTree = "<group>"; };
+		08ED71EF1DC3360100A84397 /* UIImageViewAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewAdditions.swift; sourceTree = "<group>"; };
+		08ED71F11DC33CAB00A84397 /* LRecordVoiceBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRecordVoiceBtn.swift; sourceTree = "<group>"; };
 		0E15865B3DCAA1E46EF6E234 /* Pods-ChatDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatDemoTests/Pods-ChatDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		86075CA9F6FD71A3F0DF7507 /* Pods_ChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC0A776668455CA7D9D94ED /* Pods_ChatDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +196,8 @@
 				085B3C811DB85A9D002D428A /* LChatInputView.swift */,
 				081F5A9D1DBF4783006E96D4 /* MoreView.swift */,
 				085B14311DC0AE4B00F7B77D /* MoreBtn.swift */,
+				08ED71EF1DC3360100A84397 /* UIImageViewAdditions.swift */,
+				08ED71F11DC33CAB00A84397 /* LRecordVoiceBtn.swift */,
 			);
 			path = keyBoard;
 			sourceTree = "<group>";
@@ -452,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08ED71F01DC3360100A84397 /* UIImageViewAdditions.swift in Sources */,
 				086257A81DB5F33200B4E9E2 /* ViewController.swift in Sources */,
 				086257DF1DB603B200B4E9E2 /* MyTableViewController.swift in Sources */,
 				086257D91DB5F73A00B4E9E2 /* MessageCell.swift in Sources */,
@@ -459,6 +466,7 @@
 				085B3C821DB85A9D002D428A /* LChatInputView.swift in Sources */,
 				086257D41DB5F59200B4E9E2 /* ChatTableViewController.swift in Sources */,
 				086257E11DB6041800B4E9E2 /* ChatTabBarController.swift in Sources */,
+				08ED71F21DC33CAB00A84397 /* LRecordVoiceBtn.swift in Sources */,
 				086257DB1DB6025F00B4E9E2 /* MsgTextCell.swift in Sources */,
 				085B14321DC0AE4B00F7B77D /* MoreBtn.swift in Sources */,
 				086257D61DB5F5D500B4E9E2 /* RegaistCell.swift in Sources */,

@@ -30,7 +30,7 @@ class LChatInputView: UIView {
    fileprivate var moreSwitchBtn: UIButton!
    fileprivate var inputWrapView : UIView!
     var moreView:MoreView!
-   fileprivate var recordVoiceBtn :UIButton!
+   fileprivate var recordVoiceBtn :LRecordVoiceBtn!
     var keyBoardType :KeyBoardType!
     
     ///重写init方法
@@ -54,7 +54,7 @@ class LChatInputView: UIView {
     self.addSubview(self.moreView!)
     self.moreView.backgroundColor = UIColor.yellow
     
-    self.moreView.setItemsArr(itemsArr: [MoreViewType.Photo,MoreViewType.Camera]
+    self.moreView.setItemsArr(itemsArr: [MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera]
 )
     
     
@@ -82,8 +82,9 @@ class LChatInputView: UIView {
     
     //切换语音按钮
     self.voiceSwitchBtn = UIButton()
-    self.voiceSwitchBtn.backgroundColor = UIColor.red
     self.addSubview(self.voiceSwitchBtn)
+    self.voiceSwitchBtn.setImage(UIImage.init(named: "btn_voice_n"), for: .normal)
+    self.voiceSwitchBtn.setImage(UIImage.init(named: "btn_keyboard_n"), for: .selected)
     self.voiceSwitchBtn.addTarget(self, action: #selector(LChatInputView.voiceSwitchAction), for:.touchUpInside)
     
     voiceSwitchBtn.snp.makeConstraints { (make) in
@@ -94,9 +95,11 @@ class LChatInputView: UIView {
     
     // 切换更多的按钮
     self.moreSwitchBtn = UIButton()
-    self.moreSwitchBtn.backgroundColor = UIColor.orange
     self.moreSwitchBtn.addTarget(self, action: #selector(LChatInputView.moreSwitchAction), for: .touchUpInside)
     self.addSubview(self.moreSwitchBtn)
+    
+    self.moreSwitchBtn.setImage(UIImage.init(named: "btn_more_n"), for: .normal)
+    self.moreSwitchBtn.setImage(UIImage.init(named: "btn_more_h"), for: .highlighted)
     
     moreSwitchBtn.snp.makeConstraints { (make) in
         make.right.equalTo(inputWrapView).offset(-4)
@@ -108,9 +111,11 @@ class LChatInputView: UIView {
     self.textView = UITextView()
     self.textView.layer.borderColor = UIColor.lightGray.cgColor
     self.textView.layer.borderWidth = 0.5
-    self.textView.layer.cornerRadius = 2
+    self.textView.layer.cornerRadius = 5
+    self.textView.layoutManager.allowsNonContiguousLayout = false;
+//    self.textView.contentInset = UIEdgeInsets.init(top: 2, left: 2, bottom: 2, right: 2)
     self.textView.returnKeyType = .send
-    self.textView.backgroundColor = UIColor.red
+    self.textView.backgroundColor = UIColor.white
     self.textView.delegate = self
     self.textView.enablesReturnKeyAutomatically = true
     self.addSubview(self.textView)
@@ -128,17 +133,9 @@ class LChatInputView: UIView {
     
   
     //录音
-    self.recordVoiceBtn = UIButton()
+    self.recordVoiceBtn = LRecordVoiceBtn(frame: CGRect.zero)
     self.addSubview(self.recordVoiceBtn)
     self.recordVoiceBtn.isHidden = true
-    self.recordVoiceBtn.setTitle("按住 说话", for: UIControlState())
-    self.recordVoiceBtn.setTitle("松开 结束", for: .highlighted)
-    self.recordVoiceBtn.addTarget(self, action: #selector(LChatInputView.holdDownButtonTouchDown), for: .touchDown)
-    self.recordVoiceBtn.addTarget(self, action: #selector(LChatInputView.holdDownButtonTouchUpInside), for: .touchUpInside)
-    self.recordVoiceBtn.addTarget(self, action: #selector(LChatInputView.holdDownButtonTouchUpOutside), for: .touchUpOutside)
-    self.recordVoiceBtn.addTarget(self, action: #selector(LChatInputView.holdDownDragOutside), for: .touchDragExit)
-    self.recordVoiceBtn.addTarget(self, action: #selector(LChatInputView.holdDownDragInside), for: .touchDragEnter)
-    self.recordVoiceBtn.backgroundColor = UIColor.brown
     self.recordVoiceBtn.snp.makeConstraints { (make) -> Void in
         make.right.equalTo(self.moreSwitchBtn.snp.left).offset(-5)
         make.left.equalTo(self.voiceSwitchBtn.snp.right).offset(5)
@@ -159,27 +156,6 @@ class LChatInputView: UIView {
     }
     
 }
-
-//MARK: - 录音
-extension LChatInputView{
-    func holdDownButtonTouchDown() {
-    }
-    
-    
-    func holdDownButtonTouchUpInside() {
-    }
-    
-    func holdDownButtonTouchUpOutside() {
-    }
-    
-    func holdDownDragOutside() {
-    }
-    
-    func holdDownDragInside() {
-    }
-    
-}
-
 
 //MARK: - 切换更多或者语音按钮
 extension LChatInputView{
@@ -223,6 +199,7 @@ extension LChatInputView{
   @objc fileprivate  func moreSwitchAction() -> Void {
     
         if keyBoardType == .VoiceRecoder {
+            self.voiceSwitchBtn.isSelected = false
             //这里处理有文本切切换发语音 要用saveTextViewStr保存当前的内容
             if self.saveTextViewStr.characters.count>0 {
                 self.textView.text = self.saveTextViewStr
@@ -233,6 +210,12 @@ extension LChatInputView{
                     self.textView.snp.updateConstraints({ (make) -> Void in
                         make.height.equalTo(textHeight)
                     })
+                    
+                    if textContentH>100 {
+                        
+                       self.textView.scrollRectToVisible(CGRect.init(x: 0, y: textView.contentSize.height-5, width: textView.contentSize.width, height: 15), animated: false)
+                    }
+                   
                 }
             }
         }
@@ -300,9 +283,7 @@ extension LChatInputView:UITextViewDelegate{
                 make.height.equalTo(textHeight)
             })
         }
-        
     }
-
     
     //失去焦点
     func resignResponder() -> Void {
