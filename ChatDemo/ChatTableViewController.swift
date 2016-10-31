@@ -45,7 +45,10 @@ class ChatTableViewController: UIViewController {
         self.messageInputView.moreView.snp.makeConstraints { (make) -> Void in
           make.bottom.equalTo(self.view.snp.bottom)
         }
-        
+    
+    //添加子菜单的目录
+    self.messageInputView.moreView.setItemsArr(itemsArr: [MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera])
+            
         self.tableView = UITableView()
         self.tableView.separatorStyle = .none
         self.tableView.delegate = self
@@ -91,7 +94,6 @@ extension ChatTableViewController {
         let keyboardValue = dic.object(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
         let bottomDistance = UIScreen.main.bounds.size.height - keyboardValue.cgRectValue.origin.y
         let duration = Double(dic.object(forKey: UIKeyboardAnimationDurationUserInfoKey) as! NSNumber)
-        print("---\(self.messageInputView.keyBoardType)")
         if self.messageInputView.keyBoardType == .System ||  self.messageInputView.keyBoardType == .Nomal || bottomDistance>0{
             UIView.animate(withDuration: duration, animations: {
                 self.messageInputView.moreView?.snp.updateConstraints({ (make) -> Void in

@@ -54,10 +54,6 @@ class LChatInputView: UIView {
     self.addSubview(self.moreView!)
     self.moreView.backgroundColor = UIColor.yellow
     
-    self.moreView.setItemsArr(itemsArr: [MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera,MoreViewType.Photo,MoreViewType.Camera]
-)
-    
-    
     
     //inputBar的背景
     self.inputWrapView = UIView()
@@ -288,7 +284,7 @@ extension LChatInputView:UITextViewDelegate{
         self.updateInputTextViewHeight(textView)
     }
     
-    func updateInputTextViewHeight(_ textView: UITextView) {
+  fileprivate  func updateInputTextViewHeight(_ textView: UITextView) {
         let textContentH = textView.contentSize.height
         let textHeight = textContentH > 35 ? (textContentH<CGFloat(textViewHeight) ? textContentH:CGFloat(textViewHeight)):31
         
