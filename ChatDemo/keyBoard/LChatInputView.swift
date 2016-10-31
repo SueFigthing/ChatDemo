@@ -113,11 +113,15 @@ class LChatInputView: UIView {
     self.textView.layer.borderWidth = 0.5
     self.textView.layer.cornerRadius = 5
     self.textView.layoutManager.allowsNonContiguousLayout = false;
-//    self.textView.contentInset = UIEdgeInsets.init(top: 2, left: 2, bottom: 2, right: 2)
+    self.textView.textContainerInset = UIEdgeInsetsMake(3, 3, 10, 3);
     self.textView.returnKeyType = .send
     self.textView.backgroundColor = UIColor.white
     self.textView.delegate = self
     self.textView.enablesReturnKeyAutomatically = true
+    self.textView.scrollsToTop = false
+    self.textView.isDirectionalLockEnabled = true;
+    self.textView.translatesAutoresizingMaskIntoConstraints = false
+    
     self.addSubview(self.textView)
     
     textView.snp.makeConstraints { (make) in
@@ -206,14 +210,14 @@ extension LChatInputView{
                 self.saveTextViewStr = ""
                 let textContentH = self.textView.contentSize.height
                 if textContentH>35{
-                    let textHeight = textContentH<CGFloat(textViewHeight)  ? textContentH:CGFloat(textViewHeight)
+                    let textHeight = textContentH < CGFloat(textViewHeight)  ? textContentH:CGFloat(textViewHeight)
                     self.textView.snp.updateConstraints({ (make) -> Void in
                         make.height.equalTo(textHeight)
                     })
                     
-                    if textContentH>100 {
+                    if textContentH > CGFloat(textViewHeight) {
                         
-                       self.textView.scrollRectToVisible(CGRect.init(x: 0, y: textView.contentSize.height-5, width: textView.contentSize.width, height: 15), animated: false)
+                       self.textView.scrollRectToVisible(CGRect.init(x: 0, y: textView.contentSize.height-15, width: textView.contentSize.width, height: 15), animated: false)
                     }
                    
                 }
@@ -265,6 +269,22 @@ extension LChatInputView:UITextViewDelegate{
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        /*在ios7上出现编辑进入最后一行时光标消失，看不到最后一行  优化*/
+        let line = textView.caretRect(for: (textView.selectedTextRange?.start)!)
+        let overflow = line.origin.y + line.size.height
+                    - ( textView.contentOffset.y + textView.bounds.size.height
+                        - textView.contentInset.bottom - textView.contentInset.top )
+        
+        if overflow>0 {
+            var offset = textView.contentOffset
+            offset.y += overflow + 7
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                textView.setContentOffset(offset, animated: false)
+            })
+        }
+        
+        
         self.updateInputTextViewHeight(textView)
     }
     
